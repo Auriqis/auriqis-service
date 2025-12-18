@@ -9,7 +9,7 @@ import { Menu, X, ChevronRight } from 'lucide-react'
 import { useScroll, motion } from 'motion/react'
 import Image from 'next/image'
 import { Scene } from '@/components/ui/scene'; // Import the Scene component
-import { UniqueAccordion } from "@/components/ui/interactive-accordion";
+// import { UniqueAccordion } from "@/components/ui/interactive-accordion";
 
 export function HeroSection() {
     useEffect(() => {
@@ -200,7 +200,7 @@ export function HeroSection() {
             </section>
 
             {/* UniqueAccordion Section */}
-            <section className="min-h-screen flex items-center justify-center p-8">
+            {/* <section className="min-h-screen flex items-center justify-center p-8">
                 <div className="w-full max-w-2xl">
                     <div className="mb-12">
                         <h1 className="text-4xl font-medium tracking-tight mb-3 text-balance">What we do</h1>
@@ -208,7 +208,7 @@ export function HeroSection() {
                     </div>
                     <UniqueAccordion />
                 </div>
-            </section>
+            </section> */}
         </>
     )
 }
