@@ -219,27 +219,27 @@ export function HeroSection() {
 const menuItems = [
   { name: 'About', href: '#link' },
   { name: 'Pricing', href: '#link' },
-    {
-        name: 'Solution',
-        dropdown: [
-            {
-                label: "Artificial Intelligence",
-                href: "/ai",
-                Icon: <Brain className="h-4 w-4" />,
-            },
-            {
-                label: "Cloud",
-                href: "/cloud",
-                Icon: <Cloud className="h-4 w-4" />,
-            },
-            {
-                label: "UI / UX",
-                href: "/ui-ux",
-                Icon: <Layout className="h-4 w-4" />,
-            },
-        ],
-    },
-    { name: 'Contact', href: '/contact' },
+  {
+      name: 'Solution',
+      dropdown: [
+          {
+              label: "Artificial Intelligence",
+              href: "/ai",
+              Icon: <Brain className="h-4 w-4 text-black dark:text-white" />, // Adjusted color for light/dark mode
+          },
+          {
+              label: "Cloud",
+              href: "/cloud",
+              Icon: <Cloud className="h-4 w-4 text-black dark:text-white" />, // Adjusted color for light/dark mode
+          },
+          {
+              label: "UI / UX",
+              href: "/ui-ux",
+              Icon: <Layout className="h-4 w-4 text-black dark:text-white" />, // Adjusted color for light/dark mode
+          },
+      ],
+  },
+  { name: 'Contact', href: '/contact' },
 ]
 
 export const HeroHeader = () => {

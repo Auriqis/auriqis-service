@@ -1,7 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { ChevronDown } from "lucide-react";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -34,7 +32,7 @@ const DropdownMenu = ({ options, children }: DropdownMenuProps) => {
     >
       <button
         onClick={toggleDropdown}
-        className="bg-transparent border-none text-white px-0 mx-0"
+        className="bg-transparent border-none text-black dark:text-white px-0 mx-0"
       >
         {children ?? ""}
         <motion.span
@@ -94,14 +92,14 @@ const DropdownMenu = ({ options, children }: DropdownMenuProps) => {
                   key={option.label}
                   href={option.href}
                   onClick={option.onClick}
-                  className="px-2 py-3 cursor-pointer text-white text-sm rounded-lg w-full text-left flex items-center gap-x-2"
+                  className="px-2 py-3 cursor-pointer text-black dark:text-white text-sm rounded-lg w-full text-left flex items-center gap-x-2"
                 >
                   {option.Icon}
                   {option.label}
                 </motion.a>
               ))
             ) : (
-              <div className="px-4 py-2 text-white text-xs">No options</div>
+              <div className="px-4 py-2 text-black dark:text-white text-xs">No options</div>
             )}
           </motion.div>
         )}
