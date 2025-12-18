@@ -358,7 +358,7 @@ const CloudHero: React.FC<HeroProps> = ({
   return (
     <>
     <HeroHeader />
-    <div className={`relative w-full h-[80vh] overflow-hidden bg-black ${className}`}> {/* Adjusted height to 85% of the viewport */}
+    <div className={`relative w-full h-[85vh] overflow-hidden bg-black ${className}`}> 
       <style jsx>{`
         @keyframes fade-in-down {
           from {
@@ -426,7 +426,7 @@ const CloudHero: React.FC<HeroProps> = ({
       />
       
       {/* Hero Content Overlay */}
-      <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-white">
+      <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-black">
         {/* Trust Badge */}
         {trustBadge && (
           <div className="mb-8 animate-fade-in-down">
@@ -440,7 +440,7 @@ const CloudHero: React.FC<HeroProps> = ({
                   ))}
                 </div>
               )}
-              <span className="text-orange-100">{trustBadge.text}</span>
+              <span className="text-gray-700">{trustBadge.text}</span> {/* Muted black for small text */}
             </div>
           </div>
         )}
@@ -448,17 +448,17 @@ const CloudHero: React.FC<HeroProps> = ({
         <div className="text-center space-y-6 max-w-5xl mx-auto px-4">
           {/* Main Heading with Animation */}
           <div className="space-y-2">
-            <h1 className="text-5xl md:text-7xl lg:text-8xl text-white animate-fade-in-up animation-delay-200">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl text-black animate-fade-in-up animation-delay-200">
               {headline.line1}
             </h1>
-            <h1 className="text-3xl md:text-3xl lg:text-4xl text-white animate-fade-in-up animation-delay-400">
+            <h1 className="text-3xl md:text-3xl lg:text-4xl text-black animate-fade-in-up animation-delay-400">
               {headline.line2}
             </h1>
           </div>
           
           {/* Subtitle with Animation */}
           <div className="max-w-3xl mx-auto animate-fade-in-up animation-delay-600">
-            <p className="text-lg md:text-xl lg:text-2xl text-orange-100/90 font-light leading-relaxed">
+            <p className="text-lg md:text-xl lg:text-2xl text-gray-700 font-light leading-relaxed"> {/* Muted black for subtitle */}
               {subtitle}
             </p>
           </div>
@@ -477,8 +477,7 @@ const CloudHero: React.FC<HeroProps> = ({
               {buttons.secondary && (
                 <button 
                   onClick={buttons.secondary.onClick}
-                  className="px-8 py-4 bg-orange-500/10 hover:bg-orange-500/20 border border-orange-300/30 hover:border-orange-300/50 text-orange-100 rounded-full font-semibold text-lg transition-all duration-300 hover:scale-105 backdrop-blur-sm"
-                >
+                  className="px-8 py-4 bg-orange-500/10 hover:bg-orange-500/20 border border-orange-300/30 hover:border-orange-300/50 text-gray-700 rounded-full font-semibold text-lg transition-all duration-300 hover:scale-105 backdrop-blur-sm"> {/* Muted black for secondary button */}
                   {buttons.secondary.text}
                 </button>
               )}
@@ -552,10 +551,10 @@ void main(void) {
 		uv+=.1*cos(i*vec2(.1+.01*i, .8)+i*i+T*.5+.1*uv.x);
 		vec2 p=uv;
 		float d=length(p);
-		col+=.00125/d*(cos(sin(i)*vec3(0.4,0.6,1.2))+1.); // Adjusted to lighter blue tones
+		col+=.00125/d*(cos(sin(i)*vec3(0.8,0.9,1.0))+1.); // Adjusted to natural cloud-like tones
 		float b=noise(i+p+bg*1.731);
 		col+=.002*b/length(max(p,vec2(b*p.x*.02,p.y)));
-			col=mix(col,vec3(bg*.2,bg*.4,bg*.7),d); // Adjusted to lighter blue tones
+		col=mix(col,vec3(bg*.8,bg*.85,bg*.9),d); // Adjusted to natural cloud-like tones
 	}
 	O=vec4(col,1);
 }`;
