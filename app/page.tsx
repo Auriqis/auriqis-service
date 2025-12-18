@@ -4,6 +4,7 @@ import { WhyArq } from "@/components/blocks/why-arq";
 import RuixenBentoCards from "@/components/ui/ruixen-bento-cards";
 import { Component } from "@/components/ui/flickering-footer";
 import ContactUs from "@/components/blocks/contact-us";
+import CTAOne from "@/components/blocks/home-cta";
 
 
 export default function Home() {
@@ -13,12 +14,13 @@ export default function Home() {
       <div className="lg:mt-16">
       <WhyArq />
       </div>
+      <CTAOne/>
       <div className="lg:mt-16">
-      <RuixenBentoCards />
+      {/* <RuixenBentoCards /> */}
       </div>
       {/* <UniqueAccordion /> */}
       <Component/>
-      <ContactUs />
-    </>
+
+</>
   );
 }
