@@ -1,35 +1,45 @@
 "use client"
 
 import Image from "next/image"
-import React from "react"
+import React, { useState } from "react"
 import { cn } from "@/lib/utils"
-import Link from "next/link"
+import {
+	Announcement,
+	AnnouncementTag,
+	AnnouncementTitle,
+} from "@/components/ui/announcement"
+import { ArrowUpRightIcon } from "lucide-react"
 
 const cardContents = [
 	{
-		title: "Beautiful Components",
+		title: "Intelligent Automation, Delivered Fast.",
 		description:
-			"Ruixen UI provides stunning, ready-made components built with consistent design and performance in mind.",
+			"From RAG-based chatbots trained on your data to complex automated workflows (Zoho, Atlassian, Google Sheets), we integrate AI to cut costs and boost efficiency.",
+		announcement: "Explore AI Solutions",
+	},
+  {
+    title: "Prototypes That Convert. Designs That Deliver.",
+    description:
+      "High-fidelity prototypes and user-centric designs that are optimized for your target audience and ready for rapid development.",
+    announcement: "View Design Prototypes",
+  },
+	{
+		title: "Scalable Backends. Zero Infrastructure Overhead.",
+		description:
+			"We build complete, secure serverless backends (AWS Lambda, DynamoDB, Cognito) using Infrastructure as Code, ensuring your application is ready for global scale from day one.",
+		announcement: "Build Your Serverless MVP",
 	},
 	{
-		title: "Developer Friendly",
+		title: "Innovation That Drives Results",
 		description:
-			"Simple APIs and excellent documentation make it easy to integrate and customize Ruixen UI in your apps.",
+			"A dedication to leveraging the latest and most effective technologies, particularly in AI and Cloud, to create forward-thinking solutions.",
+		announcement: "Start your 1-week MVP discovery",
 	},
 	{
-		title: "Flexible Layouts",
+		title: "Quality You Can Trust",
 		description:
-			"Design dynamic, responsive layouts using our grid utilities and flex-based helpers. Whether you're building dashboards, landing pages, or nested components, Ruixen UI provides composable layout primitives that scale beautifully across screen sizes. With mobile-first defaults, built-in breakpoints, and utilities like col-span, row-span, gap control, and responsive spacing, your UI adapts effortlessly to every device.",
-	},
-	{
-		title: "Dark Mode Support",
-		description:
-			"Every component is thoughtfully designed to work seamlessly in both light and dark themes.",
-	},
-	{
-		title: "Fast & Lightweight",
-		description:
-			"Built for speed and performance, Ruixen UI ensures quick load times without sacrificing quality.",
+			"A commitment to excellence in every line of code, design, and client interaction, ensuring systems are robust, scalable, and reliable.",
+		announcement: "Start your 1-week MVP discovery",
 	},
 ]
 
@@ -37,29 +47,46 @@ const PlusCard: React.FC<{
 	className?: string
 	title: string
 	description: string
+	announcement: string
 }> = ({
 	className = "",
 	title,
 	description,
+	announcement,
 }) => {
+	const [isHovered, setIsHovered] = useState(false)
+
 	return (
 		<div
 			className={cn(
 				"relative border border-dashed border-zinc-400 dark:border-zinc-700 rounded-lg p-6 bg-white dark:bg-zinc-950 min-h-[200px]",
-				"flex flex-col justify-between",
+				"flex flex-col justify-between cursor-pointer",
 				className
 			)}
+			onMouseEnter={() => setIsHovered(true)}
+			onMouseLeave={() => setIsHovered(false)}
+			onClick={() => (window.location.href = "#")}
 		>
-			<Link href="https://ruixen.com/?utm_source=21stdev&utm_medium=button&utm_campaign=ruixen_bento_cards">
-				<CornerPlusIcons />
-				{/* Content */}
-				<div className="relative z-10 space-y-2">
+			<CornerPlusIcons />
+			{/* Content */}
+			<div className="relative z-10 space-y-2">
+				<div className="flex items-center relative">
 					<h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">
 						{title}
 					</h3>
-					<p className="text-gray-700 dark:text-gray-300">{description}</p>
+					{isHovered && (
+						<span className="absolute right-0 top-1/2 -translate-y-1/2">
+							<Announcement>
+								<AnnouncementTitle>
+									{announcement}
+									<ArrowUpRightIcon size={16} className="shrink-0 text-muted-foreground" />
+								</AnnouncementTitle>
+							</Announcement>
+						</span>
+					)}
 				</div>
-			</Link>
+				<p className="text-gray-700 dark:text-gray-300">{description}</p>
+			</div>
 		</div>
 	)
 }
@@ -126,9 +153,9 @@ export default function RuixenBentoCards() {
 						What We Build
 					</h2>
 					<p className="text-gray-600 dark:text-gray-400 text-lg">
-						Ruixen UI gives you the tools to build beautiful, high-performing
-						websites with lightning speed. Each component is thoughtfully designed
-						to be flexible, reusable, and accessible.
+						We design and build intelligent, production-ready digital systems
+            from AI-powered automations and data-aware chatbots to scalable, 
+            serverless backends and conversion-focused interfaces.
 					</p>
 				</div>
 			</div>

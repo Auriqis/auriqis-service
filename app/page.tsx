@@ -1,8 +1,9 @@
 import {HeroSection} from "@/components/blocks/hero-section-5"
 import { WhyArq } from "@/components/blocks/why-arq";
-import { UniqueAccordion } from "@/components/ui/interactive-accordion";
+// import { UniqueAccordion } from "@/components/ui/interactive-accordion";
 import RuixenBentoCards from "@/components/ui/ruixen-bento-cards";
 import { Component } from "@/components/ui/flickering-footer";
+import ContactUs from "@/components/blocks/contact-us";
 
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
       </div>
       {/* <UniqueAccordion /> */}
       <Component/>
+      <ContactUs />
     </>
   );
 }

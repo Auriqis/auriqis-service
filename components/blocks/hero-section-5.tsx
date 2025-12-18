@@ -220,7 +220,7 @@ const menuItems = [
     { name: 'About', href: '#link' },
 ]
 
-const HeroHeader = () => {
+export const HeroHeader = () => {
     const [menuState, setMenuState] = React.useState(false)
     const [scrolled, setScrolled] = React.useState(false)
     const { scrollYProgress } = useScroll()
