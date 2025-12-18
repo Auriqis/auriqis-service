@@ -841,7 +841,7 @@ export const siteConfig = {
     badge: "Introducing custom automations",
     title: "Meet your AI Agent Streamline your workflow",
     description:
-      "AI assistant designed to streamline your digital workflows and handle mundane tasks, so you can focus on what truly matters",
+      "Ensuring the brilliance of innovation with the essence of intelligence.",
     cta: {
       primary: {
         text: "Try for Free",
