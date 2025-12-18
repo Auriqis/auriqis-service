@@ -3,7 +3,7 @@ import { WhyArq } from "@/components/blocks/why-arq";
 // import { UniqueAccordion } from "@/components/ui/interactive-accordion";
 import RuixenBentoCards from "@/components/ui/ruixen-bento-cards";
 import { Component } from "@/components/ui/flickering-footer";
-import ContactUs from "@/components/blocks/contact-us";
+// import ContactUs from "@/components/blocks/contact-us";
 import CTAOne from "@/components/blocks/home-cta";
 
 
