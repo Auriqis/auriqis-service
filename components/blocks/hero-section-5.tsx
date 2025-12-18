@@ -9,6 +9,9 @@ import { Menu, X, ChevronRight } from 'lucide-react'
 import { useScroll, motion } from 'motion/react'
 import Image from 'next/image'
 import { Scene } from '@/components/ui/scene'; // Import the Scene component
+import { DropdownMenu } from "@/components/ui/dropdown-menu";
+import { Cloud, Layout, Brain } from "lucide-react";
+
 // import { UniqueAccordion } from "@/components/ui/interactive-accordion";
 
 export function HeroSection() {
@@ -214,10 +217,29 @@ export function HeroSection() {
 }
 
 const menuItems = [
-    { name: 'Features', href: '#link' },
-    { name: 'Solution', href: '#link' },
-    { name: 'Pricing', href: '#link' },
-    { name: 'About', href: '#link' },
+  { name: 'About', href: '#link' },
+  { name: 'Pricing', href: '#link' },
+    {
+        name: 'Solution',
+        dropdown: [
+            {
+                label: "Artificial Intelligence",
+                href: "/ai",
+                Icon: <Brain className="h-4 w-4" />,
+            },
+            {
+                label: "Cloud",
+                href: "/cloud",
+                Icon: <Cloud className="h-4 w-4" />,
+            },
+            {
+                label: "UI / UX",
+                href: "/ui-ux",
+                Icon: <Layout className="h-4 w-4" />,
+            },
+        ],
+    },
+    { name: 'Contact', href: '/contact' },
 ]
 
 export const HeroHeader = () => {
@@ -260,12 +282,20 @@ export const HeroHeader = () => {
                             <div className="hidden lg:block">
                                 <ul className="flex gap-8 text-sm">
                                     {menuItems.map((item, index) => (
-                                        <li key={index}>
-                                            <Link
-                                                href={item.href}
-                                                className="text-muted-foreground hover:text-accent-foreground block duration-150">
-                                                <span>{item.name}</span>
-                                            </Link>
+                                        <li key={index} className="relative group">
+                                            {item.dropdown ? (
+                                                <DropdownMenu
+                                                    options={item.dropdown.map((dropdownItem) => ({
+                                                        label: dropdownItem.label,
+                                                        href: dropdownItem.href,
+                                                        Icon: dropdownItem.Icon,
+                                                    }))}
+                                                >
+                                                    {item.name}
+                                                </DropdownMenu>
+                                            ) : (
+                                                <Link href={item.href}>{item.name}</Link>
+                                            )}
                                         </li>
                                     ))}
                                 </ul>
@@ -277,11 +307,19 @@ export const HeroHeader = () => {
                                 <ul className="space-y-6 text-base">
                                     {menuItems.map((item, index) => (
                                         <li key={index}>
-                                            <Link
-                                                href={item.href}
-                                                className="text-muted-foreground hover:text-accent-foreground block duration-150">
-                                                <span>{item.name}</span>
-                                            </Link>
+                                            {item.dropdown ? (
+                                                <DropdownMenu
+                                                    options={item.dropdown.map((dropdownItem) => ({
+                                                        label: dropdownItem.label,
+                                                        href: dropdownItem.href,
+                                                        Icon: dropdownItem.Icon,
+                                                    }))}
+                                                >
+                                                    {item.name}
+                                                </DropdownMenu>
+                                            ) : (
+                                                <Link href={item.href}>{item.name}</Link>
+                                            )}
                                         </li>
                                     ))}
                                 </ul>
