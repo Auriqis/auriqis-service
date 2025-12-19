@@ -1,209 +1,225 @@
-'use client'
-import React, { useEffect } from 'react'
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
-import { InfiniteSlider } from '@/components/ui/infinite-slider'
-import { ProgressiveBlur } from '@/components/ui/progressive-blur'
-import { cn } from '@/lib/utils'
-import { Menu, X, ChevronRight } from 'lucide-react'
-import { useScroll, motion } from 'motion/react'
-import Image from 'next/image'
-import { Scene } from '@/components/ui/scene'; // Import the Scene component
+"use client";
+import React, { useEffect } from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { InfiniteSlider } from "@/components/ui/infinite-slider";
+import { ProgressiveBlur } from "@/components/ui/progressive-blur";
+import { cn } from "@/lib/utils";
+import { Menu, X, ChevronRight } from "lucide-react";
+import { useScroll, motion } from "motion/react";
+import Image from "next/image";
+import { Scene } from "@/components/ui/scene"; // Import the Scene component
 import { DropdownMenu } from "@/components/ui/dropdown-menu";
 import { Cloud, Layout, Brain } from "lucide-react";
 
 // import { UniqueAccordion } from "@/components/ui/interactive-accordion";
 
 export function HeroSection() {
-    useEffect(() => {
-        const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+  useEffect(() => {
+    const darkModeMediaQuery = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    );
 
-        const applyTheme = (isDarkMode: boolean) => {
-            if (isDarkMode) {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-            }
-        };
+    const applyTheme = (isDarkMode: boolean) => {
+      if (isDarkMode) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    };
 
-        // Apply the initial theme
-        applyTheme(darkModeMediaQuery.matches);
+    // Apply the initial theme
+    applyTheme(darkModeMediaQuery.matches);
 
-        // Listen for changes to the theme
-        const handleChange = (event: MediaQueryListEvent) => {
-            applyTheme(event.matches);
-        };
+    // Listen for changes to the theme
+    const handleChange = (event: MediaQueryListEvent) => {
+      applyTheme(event.matches);
+    };
 
-        darkModeMediaQuery.addEventListener('change', handleChange);
+    darkModeMediaQuery.addEventListener("change", handleChange);
 
-        return () => {
-            darkModeMediaQuery.removeEventListener('change', handleChange);
-        };
-    }, []);
+    return () => {
+      darkModeMediaQuery.removeEventListener("change", handleChange);
+    };
+  }, []);
 
-    return (
-        <>
-            <div className="relative w-full h-screen overflow-hidden">
-                {/* Background Scene for the first section only */}
-                <div className="absolute inset-0 -z-10">
-                    <Scene />
+  return (
+    <>
+      <div className="relative w-full h-screen overflow-hidden">
+        {/* Background Scene for the first section only */}
+        <div className="absolute inset-0 -z-10">
+          <Scene />
+        </div>
+
+        {/* Hero Content */}
+        <HeroHeader />
+        <main className="overflow-x-hidden">
+          <section>
+            <div className="py-24 md:pb-32 lg:pb-36 lg:pt-72">
+              <div className="relative z-10 mx-auto flex max-w-7xl flex-col px-6 lg:block lg:px-12">
+                <div className="mx-auto max-w-lg text-center lg:ml-0 lg:max-w-full lg:text-left">
+                  <h1 className="mt-8 max-w-2xl text-balance text-5xl lg:mt-16 xl:text-5xl">
+                    Certified Expertise. Unmatched Velocity.{" "}
+                  </h1>
+                  <h1 className=" max-w-2xl text-balance text-5xl md:text-6xl lg:mt-4 xl:text-3xl">
+                    Your Digital Transformation Starts Now.{" "}
+                  </h1>
+                  <p className="mt-8 max-w-2xl text-balance text-lg">
+                    We build and deliver high-quality, innovative AI and Cloud
+                    systems quicker than traditional agencies.{" "}
+                  </p>
+
+                  <div className="mt-12 flex flex-col items-center justify-center gap-2 sm:flex-row lg:justify-start">
+                    <Button
+                      asChild
+                      size="lg"
+                      className="h-12 rounded-full pl-5 pr-3 text-base"
+                    >
+                      <Link href="#link">
+                        <span className="text-nowrap">
+                          Start Your 1-Week MVP Discovery
+                        </span>
+                        <ChevronRight className="ml-1" />
+                      </Link>
+                    </Button>
+                    <Button
+                      key={2}
+                      asChild
+                      size="lg"
+                      variant="ghost"
+                      className="h-12 rounded-full px-5 text-base hover:bg-zinc-950/5 dark:hover:bg-white/5"
+                    >
+                      <Link href="#link">
+                        <span className="text-nowrap">Request a demo</span>
+                      </Link>
+                    </Button>
+                  </div>
                 </div>
-
-                {/* Hero Content */}
-                <HeroHeader />
-                <main className="overflow-x-hidden">
-                    <section>
-                        <div className="py-24 md:pb-32 lg:pb-36 lg:pt-72">
-                            <div className="relative z-10 mx-auto flex max-w-7xl flex-col px-6 lg:block lg:px-12">
-                                <div className="mx-auto max-w-lg text-center lg:ml-0 lg:max-w-full lg:text-left">
-                                    <h1 className="mt-8 max-w-2xl text-balance text-5xl lg:mt-16 xl:text-5xl">Certified Expertise. Unmatched Velocity. </h1>
-                                    <h1 className=" max-w-2xl text-balance text-5xl md:text-6xl lg:mt-4 xl:text-3xl">Your Digital Transformation Starts Now. </h1>
-                                    <p className="mt-8 max-w-2xl text-balance text-lg">We build and deliver high-quality, innovative AI and Cloud systems quicker than traditional agencies. </p>
-
-                                    <div className="mt-12 flex flex-col items-center justify-center gap-2 sm:flex-row lg:justify-start">
-                                        <Button
-                                            asChild
-                                            size="lg"
-                                            className="h-12 rounded-full pl-5 pr-3 text-base">
-                                            <Link href="#link">
-                                                <span className="text-nowrap">Start Your 1-Week MVP Discovery</span>
-                                                <ChevronRight className="ml-1" />
-                                            </Link>
-                                        </Button>
-                                        <Button
-                                            key={2}
-                                            asChild
-                                            size="lg"
-                                            variant="ghost"
-                                            className="h-12 rounded-full px-5 text-base hover:bg-zinc-950/5 dark:hover:bg-white/5">
-                                            <Link href="#link">
-                                                <span className="text-nowrap">Request a demo</span>
-                                            </Link>
-                                        </Button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="aspect-2/3 absolute inset-1 overflow-hidden rounded-3xl border border-black/10 sm:aspect-video lg:rounded-[3rem] dark:border-white/5">
-                                <video
-                                    autoPlay
-                                    loop
-                                    className="size-full object-cover opacity-50 invert dark:opacity-35 dark:invert-0 dark:lg:opacity-75"
-                                    src="https://ik.imagekit.io/lrigu76hy/tailark/dna-video.mp4?updatedAt=1745736251477"></video>
-                            </div>
-                        </div>
-                    </section>
-                </main>
+              </div>
+              <div className="aspect-2/3 absolute inset-1 overflow-hidden rounded-3xl border border-black/10 sm:aspect-video lg:rounded-[3rem] dark:border-white/5">
+                <video
+                  autoPlay
+                  loop
+                  className="size-full object-cover opacity-50 invert dark:opacity-35 dark:invert-0 dark:lg:opacity-75"
+                  src="https://ik.imagekit.io/lrigu76hy/tailark/dna-video.mp4?updatedAt=1745736251477"
+                ></video>
+              </div>
             </div>
+          </section>
+        </main>
+      </div>
 
-            {/* InfiniteSlider Section */}
-            <section className="relative bg-background pb-2">
-                <div className="group relative m-auto max-w-7xl px-6">
-                    <div className="flex flex-col items-center md:flex-row">
-                        <div className="md:max-w-44 md:border-r md:pr-6">
-                            <p className="text-end text-sm">Certified Expertise & Integrations</p>
-                        </div>
-                        <div className="relative py-6 md:w-[calc(100%-11rem)]">
-                            <InfiniteSlider
-                                speedOnHover={20}
-                                speed={40}
-                                gap={112}
-                                className="" // Removed the debugging border style
-                            >
-                                <div className="flex">
-                                    <img
-                                        className="mx-auto h-5 w-fit dark:invert"
-                                        src="https://html.tailus.io/blocks/customers/nvidia.svg"
-                                        alt="Nvidia Logo"
-                                        height="20"
-                                        width="auto"
-                                    />
-                                </div>
-
-                                <div className="flex">
-                                    <img
-                                        className="mx-auto h-4 w-fit dark:invert"
-                                        src="https://html.tailus.io/blocks/customers/column.svg"
-                                        alt="Column Logo"
-                                        height="16"
-                                        width="auto"
-                                    />
-                                </div>
-                                <div className="flex">
-                                    <img
-                                        className="mx-auto h-4 w-fit dark:invert"
-                                        src="https://html.tailus.io/blocks/customers/github.svg"
-                                        alt="GitHub Logo"
-                                        height="16"
-                                        width="auto"
-                                    />
-                                </div>
-                                <div className="flex">
-                                    <img
-                                        className="mx-auto h-5 w-fit dark:invert"
-                                        src="https://html.tailus.io/blocks/customers/nike.svg"
-                                        alt="Nike Logo"
-                                        height="20"
-                                        width="auto"
-                                    />
-                                </div>
-                                <div className="flex">
-                                    <img
-                                        className="mx-auto h-5 w-fit dark:invert"
-                                        src="https://html.tailus.io/blocks/customers/lemonsqueezy.svg"
-                                        alt="Lemon Squeezy Logo"
-                                        height="20"
-                                        width="auto"
-                                    />
-                                </div>
-                                <div className="flex">
-                                    <img
-                                        className="mx-auto h-4 w-fit dark:invert"
-                                        src="https://html.tailus.io/blocks/customers/laravel.svg"
-                                        alt="Laravel Logo"
-                                        height="16"
-                                        width="auto"
-                                    />
-                                </div>
-                                <div className="flex">
-                                    <img
-                                        className="mx-auto h-7 w-fit dark:invert"
-                                        src="https://html.tailus.io/blocks/customers/lilly.svg"
-                                        alt="Lilly Logo"
-                                        height="28"
-                                        width="auto"
-                                    />
-                                </div>
-
-                                <div className="flex">
-                                    <img
-                                        className="mx-auto h-6 w-fit dark:invert"
-                                        src="https://html.tailus.io/blocks/customers/openai.svg"
-                                        alt="OpenAI Logo"
-                                        height="24"
-                                        width="auto"
-                                    />
-                                </div>
-                            </InfiniteSlider>
-
-                            <div className="bg-linear-to-r from-background absolute inset-y-0 left-0 w-20"></div>
-                            <div className="bg-linear-to-l from-background absolute inset-y-0 right-0 w-20"></div>
-                            <ProgressiveBlur
-                                className="pointer-events-none absolute left-0 top-0 h-full w-20"
-                                direction="left"
-                                blurIntensity={1}
-                            />
-                            <ProgressiveBlur
-                                className="pointer-events-none absolute right-0 top-0 h-full w-20"
-                                direction="right"
-                                blurIntensity={1}
-                            />
-                        </div>
-                    </div>
+      {/* InfiniteSlider Section */}
+      <section className="relative bg-background pb-2">
+        <div className="group relative m-auto max-w-7xl px-6">
+          <div className="flex flex-col items-center md:flex-row">
+            <div className="md:max-w-44 md:border-r md:pr-6">
+              <p className="text-end text-sm">
+                Certified Expertise & Integrations
+              </p>
+            </div>
+            <div className="relative py-6 md:w-[calc(100%-11rem)]">
+              <InfiniteSlider
+                speedOnHover={20}
+                speed={40}
+                gap={112}
+                className="" // Removed the debugging border style
+              >
+                <div className="flex">
+                  <img
+                    className="mx-auto h-5 w-fit dark:invert"
+                    src="https://html.tailus.io/blocks/customers/nvidia.svg"
+                    alt="Nvidia Logo"
+                    height="20"
+                    width="auto"
+                  />
                 </div>
-            </section>
 
-            {/* UniqueAccordion Section */}
-            {/* <section className="min-h-screen flex items-center justify-center p-8">
+                <div className="flex">
+                  <img
+                    className="mx-auto h-4 w-fit dark:invert"
+                    src="https://html.tailus.io/blocks/customers/column.svg"
+                    alt="Column Logo"
+                    height="16"
+                    width="auto"
+                  />
+                </div>
+                <div className="flex">
+                  <img
+                    className="mx-auto h-4 w-fit dark:invert"
+                    src="https://html.tailus.io/blocks/customers/github.svg"
+                    alt="GitHub Logo"
+                    height="16"
+                    width="auto"
+                  />
+                </div>
+                <div className="flex">
+                  <img
+                    className="mx-auto h-5 w-fit dark:invert"
+                    src="https://html.tailus.io/blocks/customers/nike.svg"
+                    alt="Nike Logo"
+                    height="20"
+                    width="auto"
+                  />
+                </div>
+                <div className="flex">
+                  <img
+                    className="mx-auto h-5 w-fit dark:invert"
+                    src="https://html.tailus.io/blocks/customers/lemonsqueezy.svg"
+                    alt="Lemon Squeezy Logo"
+                    height="20"
+                    width="auto"
+                  />
+                </div>
+                <div className="flex">
+                  <img
+                    className="mx-auto h-4 w-fit dark:invert"
+                    src="https://html.tailus.io/blocks/customers/laravel.svg"
+                    alt="Laravel Logo"
+                    height="16"
+                    width="auto"
+                  />
+                </div>
+                <div className="flex">
+                  <img
+                    className="mx-auto h-7 w-fit dark:invert"
+                    src="https://html.tailus.io/blocks/customers/lilly.svg"
+                    alt="Lilly Logo"
+                    height="28"
+                    width="auto"
+                  />
+                </div>
+
+                <div className="flex">
+                  <img
+                    className="mx-auto h-6 w-fit dark:invert"
+                    src="https://html.tailus.io/blocks/customers/openai.svg"
+                    alt="OpenAI Logo"
+                    height="24"
+                    width="auto"
+                  />
+                </div>
+              </InfiniteSlider>
+
+              <div className="bg-linear-to-r from-background absolute inset-y-0 left-0 w-20"></div>
+              <div className="bg-linear-to-l from-background absolute inset-y-0 right-0 w-20"></div>
+              <ProgressiveBlur
+                className="pointer-events-none absolute left-0 top-0 h-full w-20"
+                direction="left"
+                blurIntensity={1}
+              />
+              <ProgressiveBlur
+                className="pointer-events-none absolute right-0 top-0 h-full w-20"
+                direction="right"
+                blurIntensity={1}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* UniqueAccordion Section */}
+      {/* <section className="min-h-screen flex items-center justify-center p-8">
                 <div className="w-full max-w-2xl">
                     <div className="mb-12">
                         <h1 className="text-4xl font-medium tracking-tight mb-3 text-balance">What we do</h1>
@@ -212,119 +228,131 @@ export function HeroSection() {
                     <UniqueAccordion />
                 </div>
             </section> */}
-        </>
-    )
+    </>
+  );
 }
 
 const menuItems = [
-  { name: 'About', href: '#link' },
-  { name: 'Pricing', href: '#link' },
+  { name: "About", href: "/about" },
+  { name: "Pricing", href: "/pricing" },
   {
-      name: 'Solution',
-      dropdown: [
-          {
-              label: "Artificial Intelligence",
-              href: "/ai",
-              Icon: <Brain className="h-4 w-4 text-black dark:text-white" />, // Adjusted color for light/dark mode
-          },
-          {
-              label: "Cloud",
-              href: "/cloud",
-              Icon: <Cloud className="h-4 w-4 text-black dark:text-white" />, // Adjusted color for light/dark mode
-          },
-          {
-              label: "UI / UX",
-              href: "/ui-ux",
-              Icon: <Layout className="h-4 w-4 text-black dark:text-white" />, // Adjusted color for light/dark mode
-          },
-      ],
+    name: "Solution",
+    dropdown: [
+      {
+        label: "Artificial Intelligence",
+        href: "/ai",
+        Icon: <Brain className="h-4 w-4 text-black dark:text-white" />, // Adjusted color for light/dark mode
+      },
+      {
+        label: "Cloud",
+        href: "/cloud",
+        Icon: <Cloud className="h-4 w-4 text-black dark:text-white" />, // Adjusted color for light/dark mode
+      },
+      {
+        label: "UI / UX",
+        href: "/ui-ux",
+        Icon: <Layout className="h-4 w-4 text-black dark:text-white" />, // Adjusted color for light/dark mode
+      },
+    ],
   },
-  { name: 'Contact', href: '/contact' },
-]
+  { name: "Contact", href: "/contact" },
+];
 
 export const HeroHeader = () => {
-    const [menuState, setMenuState] = React.useState(false)
-    const [scrolled, setScrolled] = React.useState(false)
-    const { scrollYProgress } = useScroll()
+  const [menuState, setMenuState] = React.useState(false);
+  const [scrolled, setScrolled] = React.useState(false);
+  const { scrollYProgress } = useScroll();
 
-    React.useEffect(() => {
-        const unsubscribe = scrollYProgress.on('change', (latest) => {
-            setScrolled(latest > 0.05)
-        })
-        return () => unsubscribe()
-    }, [scrollYProgress])
+  React.useEffect(() => {
+    const unsubscribe = scrollYProgress.on("change", (latest) => {
+      setScrolled(latest > 0.05);
+    });
+    return () => unsubscribe();
+  }, [scrollYProgress]);
 
-    return (
-        <header>
-            <nav
-                data-state={menuState && 'active'}
-                className="group fixed z-20 w-full pt-2">
-                <div className={cn('mx-auto max-w-7xl rounded-3xl px-6 transition-all duration-300 lg:px-12', scrolled && 'bg-background/50 backdrop-blur-2xl')}>
-                    <motion.div
-                        key={1}
-                        className={cn('relative flex flex-wrap items-center justify-between gap-6 py-3 duration-200 lg:gap-0 lg:py-6', scrolled && 'lg:py-4')}>
-                        <div className="flex w-full items-center justify-between gap-12 lg:w-auto">
-                            <Link
-                                href="/"
-                                aria-label="home"
-                                className="flex items-center space-x-2">
-                                <Logo />
-                            </Link>
+  return (
+    <header>
+      <nav
+        data-state={menuState && "active"}
+        className="group fixed z-20 w-full pt-2"
+      >
+        <div
+          className={cn(
+            "mx-auto max-w-7xl rounded-3xl px-6 transition-all duration-300 lg:px-12",
+            scrolled && "bg-background/50 backdrop-blur-2xl"
+          )}
+        >
+          <motion.div
+            key={1}
+            className={cn(
+              "relative flex flex-wrap items-center justify-between gap-6 py-3 duration-200 lg:gap-0 lg:py-6",
+              scrolled && "lg:py-4"
+            )}
+          >
+            <div className="flex w-full items-center justify-between gap-12 lg:w-auto">
+              <Link
+                href="/"
+                aria-label="home"
+                className="flex items-center space-x-2"
+              >
+                <Logo />
+              </Link>
 
-                            <button
-                                onClick={() => setMenuState(!menuState)}
-                                aria-label={menuState == true ? 'Close Menu' : 'Open Menu'}
-                                className="relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 lg:hidden">
-                                <Menu className="group-data-[state=active]:rotate-180 group-data-[state=active]:scale-0 group-data-[state=active]:opacity-0 m-auto size-6 duration-200" />
-                                <X className="group-data-[state=active]:rotate-0 group-data-[state=active]:scale-100 group-data-[state=active]:opacity-100 absolute inset-0 m-auto size-6 -rotate-180 scale-0 opacity-0 duration-200" />
-                            </button>
+              <button
+                onClick={() => setMenuState(!menuState)}
+                aria-label={menuState == true ? "Close Menu" : "Open Menu"}
+                className="relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 lg:hidden"
+              >
+                <Menu className="group-data-[state=active]:rotate-180 group-data-[state=active]:scale-0 group-data-[state=active]:opacity-0 m-auto size-6 duration-200" />
+                <X className="group-data-[state=active]:rotate-0 group-data-[state=active]:scale-100 group-data-[state=active]:opacity-100 absolute inset-0 m-auto size-6 -rotate-180 scale-0 opacity-0 duration-200" />
+              </button>
 
-                            <div className="hidden lg:block">
-                                <ul className="flex gap-8 text-sm">
-                                    {menuItems.map((item, index) => (
-                                        <li key={index} className="relative group">
-                                            {item.dropdown ? (
-                                                <DropdownMenu
-                                                    options={item.dropdown.map((dropdownItem) => ({
-                                                        label: dropdownItem.label,
-                                                        href: dropdownItem.href,
-                                                        Icon: dropdownItem.Icon,
-                                                    }))}
-                                                >
-                                                    {item.name}
-                                                </DropdownMenu>
-                                            ) : (
-                                                <Link href={item.href}>{item.name}</Link>
-                                            )}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </div>
+              <div className="hidden lg:block">
+                <ul className="flex gap-8 text-sm">
+                  {menuItems.map((item, index) => (
+                    <li key={index} className="relative group">
+                      {item.dropdown ? (
+                        <DropdownMenu
+                          options={item.dropdown.map((dropdownItem) => ({
+                            label: dropdownItem.label,
+                            href: dropdownItem.href,
+                            Icon: dropdownItem.Icon,
+                          }))}
+                        >
+                          {item.name}
+                        </DropdownMenu>
+                      ) : (
+                        <Link href={item.href}>{item.name}</Link>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
 
-                        <div className="bg-background group-data-[state=active]:block lg:group-data-[state=active]:flex mb-6 hidden w-full flex-wrap items-center justify-end space-y-8 rounded-3xl border p-6 shadow-2xl shadow-zinc-300/20 md:flex-nowrap lg:m-0 lg:flex lg:w-fit lg:gap-6 lg:space-y-0 lg:border-transparent lg:bg-transparent lg:p-0 lg:shadow-none dark:shadow-none dark:lg:bg-transparent">
-                            <div className="lg:hidden">
-                                <ul className="space-y-6 text-base">
-                                    {menuItems.map((item, index) => (
-                                        <li key={index}>
-                                            {item.dropdown ? (
-                                                <DropdownMenu
-                                                    options={item.dropdown.map((dropdownItem) => ({
-                                                        label: dropdownItem.label,
-                                                        href: dropdownItem.href,
-                                                        Icon: dropdownItem.Icon,
-                                                    }))}
-                                                >
-                                                    {item.name}
-                                                </DropdownMenu>
-                                            ) : (
-                                                <Link href={item.href}>{item.name}</Link>
-                                            )}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                            {/* <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
+            <div className="bg-background group-data-[state=active]:block lg:group-data-[state=active]:flex mb-6 hidden w-full flex-wrap items-center justify-end space-y-8 rounded-3xl border p-6 shadow-2xl shadow-zinc-300/20 md:flex-nowrap lg:m-0 lg:flex lg:w-fit lg:gap-6 lg:space-y-0 lg:border-transparent lg:bg-transparent lg:p-0 lg:shadow-none dark:shadow-none dark:lg:bg-transparent">
+              <div className="lg:hidden">
+                <ul className="space-y-6 text-base">
+                  {menuItems.map((item, index) => (
+                    <li key={index}>
+                      {item.dropdown ? (
+                        <DropdownMenu
+                          options={item.dropdown.map((dropdownItem) => ({
+                            label: dropdownItem.label,
+                            href: dropdownItem.href,
+                            Icon: dropdownItem.Icon,
+                          }))}
+                        >
+                          {item.name}
+                        </DropdownMenu>
+                      ) : (
+                        <Link href={item.href}>{item.name}</Link>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              {/* <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
                                 <Button
                                     asChild
                                     variant="outline"
@@ -341,22 +369,22 @@ export const HeroHeader = () => {
                                     </Link>
                                 </Button>
                             </div> */}
-                        </div>
-                    </motion.div>
-                </div>
-            </nav>
-        </header>
-    )
-}
+            </div>
+          </motion.div>
+        </div>
+      </nav>
+    </header>
+  );
+};
 
 const Logo = ({ className }: { className?: string }) => {
-    return (
-          <Image
-            src="/images/logo.jpeg" // Path to the image in the public folder
-            alt="Logo"
-            width={58} // Set the width of the image
-            height={58} // Set the height of the image
-            className={className} // Add your styles here
-        />
-    )
-}
+  return (
+    <Image
+      src="/images/logo.jpeg" // Path to the image in the public folder
+      alt="Logo"
+      width={58} // Set the width of the image
+      height={58} // Set the height of the image
+      className={className} // Add your styles here
+    />
+  );
+};
