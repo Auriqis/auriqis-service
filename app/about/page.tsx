@@ -1,3 +1,5 @@
+import { HeroHeader } from "@/components/blocks/hero-section-5";
+import { Component } from "@/components/ui/flickering-footer";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -10,6 +12,7 @@ export default function AboutPage() {
   return (
     <main className="relative bg-background overflow-hidden">
       {/* Hero Section */}
+      <HeroHeader />
       <section className="mx-auto max-w-7xl px-6 lg:px-12 py-24 lg:py-32">
         <div className="max-w-3xl">
           <h1 className="text-balance text-5xl md:text-6xl font-medium tracking-tight">
@@ -77,6 +80,7 @@ export default function AboutPage() {
           />
         </div>
       </section>
+      <Component />
     </main>
   );
 }
