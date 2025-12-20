@@ -11,7 +11,6 @@ import Image from "next/image";
 import { Scene } from "@/components/ui/scene"; // Import the Scene component
 import { DropdownMenu } from "@/components/ui/dropdown-menu";
 import { Cloud, Layout, Brain } from "lucide-react";
-import { Icon } from "@iconify/react";
 
 // import { UniqueAccordion } from "@/components/ui/interactive-accordion";
 
