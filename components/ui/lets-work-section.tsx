@@ -21,7 +21,7 @@ export function LetsWorkTogether() {
   }
 
   const handleBookCall = () => {
-    window.open("", "_blank")
+    window.open("https://cal.com/hello-auriqis/15min", "_blank")
     // cal.com link goes here
   }
 
